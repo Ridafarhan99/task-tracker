@@ -25,7 +25,7 @@ readJSON();
 // fs.writeFileSync("task.json", JSON.stringify(data, null, 4), "utf8");
 
 const instruction = process.argv[2];
-console.log(instruction);
+// console.log(instruction);
 
 const saveJSON = (data) => {
   fs.writeFileSync("task.json", JSON.stringify(data, null, 4), "utf8");
@@ -62,6 +62,13 @@ if (instruction == "delete") {
 
 if (instruction == "update") {
   const updateId = process.argv[3];
-  let updatedAt = readJSON();
-  let index = users.findIndex((user) => user.id === updateId);
+  const updatedValue = process.argv[4];
+  let tasks = readJSON();
+  let updatedTask = tasks.find((task) => task.id == updateId);
+  console.log(updatedTask);
+  if (updatedTask) {
+    updatedTask.data = updatedValue;
+    updatedTask.updatedAt = new Date();
+    saveJSON(tasks);
+  }
 }
