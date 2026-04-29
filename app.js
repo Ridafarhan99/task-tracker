@@ -14,19 +14,8 @@ const readJSON = () => {
 
 readJSON();
 
-// fs.writeFile("task.json", "hello", "utf8", (err) => {
-//   if (err) {
-//     console.error("Failed to write file:", err);
-//     return;
-//   }
-//   console.log("File written successfully!");
-// });
-// const data = { name: "John", age: 30, city: "New York" };
-// fs.writeFileSync("task.json", JSON.stringify(data, null, 4), "utf8");
-
 const instruction = process.argv[2];
 const status = process.argv[3];
-// console.log(instruction);
 
 const saveJSON = (data) => {
   fs.writeFileSync("task.json", JSON.stringify(data, null, 4), "utf8");
@@ -104,4 +93,26 @@ if (instruction == "list") {
       num++;
     });
   }
+}
+
+if (instruction == "mark-in-progress") {
+  let tasks = readJSON();
+  tasks.forEach((task) => {
+    if (task.id == status) {
+      task.status = "in-progress";
+    }
+  });
+
+  saveJSON(tasks);
+}
+
+if (instruction == "mark-done") {
+  let tasks = readJSON();
+  tasks.forEach((task) => {
+    if (task.id == status) {
+      task.status = "done";
+    }
+  });
+
+  saveJSON(tasks);
 }

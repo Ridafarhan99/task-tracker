@@ -3,7 +3,7 @@
         "id": 1,
         "data": "apple",
         "description": "adding data into json",
-        "status": "todo",
+        "status": "done",
         "createdAt": "2026-04-29T14:05:33.407Z",
         "updatedAt": "2026-04-29T14:05:33.407Z"
     },
